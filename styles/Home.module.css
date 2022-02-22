@@ -1,36 +1,157 @@
-.container {
-  padding: 0 2rem;
+.hero{
+  display: flex;
+  background: url("/images/wave.png")  no-repeat center center;
+  background-size: cover;
+  width: 100%;
+  height: fit-content;
+  align-items: center;
+  flex-direction: column;
+  padding: 2vh;
 }
 
-.main {
-  min-height: 100vh;
-  padding: 4rem 0;
-  flex: 1;
+
+
+.hero span img{
+  height: 100px;
+  width: auto;
+}
+.hero .fusion{
+  width: 40%;
+}
+.hero .aagaaz{
+  width: 100%;
+}
+
+.hero .people{
+  width: 100%;
+}
+.hero img{
+  width: 100%;
+}
+
+@media screen and (min-width: 936px) {
+
+.hero span img {
+  height: 100px;
+  width: auto;
+}
+
+.hero .fusion {
+  width: 12%;
+  z-index: 1;
+}
+
+.hero h3 {
+  z-index: 1;
+  font-size: 3ch;
+  font-family: ubuntu;
+}
+
+.hero .aagaaz {
+  width: 60%;
+  z-index: 1;
+}
+
+.hero .people {
+  width: 50%;
+  z-index: 0;
+}
+
+.hero img {
+  width: 100%;
+}
+
+}
+
+/* Hero Section Ends */
+
+/* Event Section Starts */
+
+.events{
+  width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  margin-top: 5vh;
 }
 
+.events h2{
+  font-family: ubuntu;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 5ch;
+  padding: 0;
+}
 
-.title {
+.events .event{
+  width: 80%;
+  background-color: #DADABE;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   margin: 0;
-  line-height: 1.15;
-  font-size: 4rem;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.events .event .imageContainer{
+  width: 100%;
+  background: #848859;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 10px;
+  max-width: 400px;
+}
+.events .event .imageContainer img{
+  width: 100%;
+  height: auto;
+}
+.events .event .ContentContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 500px;
+}
+.events .event .ContentContainer h3 {
+  font-family: ubuntu;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 3.2ch;
+  margin: 20px 0;
+}
+.events .event .ContentContainer P {
+  font-family: ubuntu;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 2ch;
+  margin: 20px;
   text-align: center;
 }
 
-.sub-title{
-  margin: 0;
-  line-height: 1.15;
-  font-size: 2rem;
-  text-align: center;
+.events .event .ContentContainer button {
+  width: fit-content;
+  background-color: #848859;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-family: ubuntu;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 2ch;
+  padding: 10px;
+  margin: 20px;
+  cursor: pointer;
 }
 
-
-@media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
+@media screen and (min-width: 936px) {
+  .events .event{
+    flex-direction: row;
+    width: fit-content;
   }
 }
