@@ -6,7 +6,7 @@
 - Next Js
 
 ## To Run Locally
-To Run this application locally your sytem should have Node Js installed so that you can install required dependencies
+To Run this application locally your sytem should have Node Js installed so that you can install required dependencies to run  this website
 
 ### Clone Repo
 ```git
