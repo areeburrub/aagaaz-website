@@ -20,7 +20,7 @@ export default function Home() {
       </nav>
       <main className={styles.main}>
         <div className={styles.hero}>  
-          <img className={styles.fusion} src="/images/fusion.png" />
+          <img className={styles.fusion} src="/images/Fusion.png" />
           <h3>presents</h3>
           <img className={styles.aagaaz} src="/images/aagaaz-logo.png" alt="logo" />
           <img className={styles.people} src="/images/people.png" />
