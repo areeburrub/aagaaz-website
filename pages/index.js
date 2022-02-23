@@ -1,126 +1,265 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import {FaRupeeSign,FaClock} from 'react-icons/fa'
+import {FaCalendarAlt,FaClock} from 'react-icons/fa'
 import { Link, animateScroll as scroll } from "react-scroll";
-import ToggleBtn from './components/toggleBtn.js'
+import {useState, useEffect} from 'react'
+import { useSwipeable } from 'react-swipeable';
 
-export default function Home() {
+function Home () {
+  
+  
+  const [Nav, setNav] = useState(false);
+  const [scrollPos, setScrollPos] = useState(0);
+  const data = [
+    {
+      "name":"Face Painting",
+      "img":"/images/events/face-painting.jpg",
+      "duration":"1.5 HRS",
+      "time":"22nd - 2PM",
+      "description":"A competition to display artistic skills by painting a face depicting the theme given. The theme shall be given at 11 AM i.e. at the beginning of the event. Participants will have 3 hours to complete their look and submit their picture.",
+      "background":"/images/events/face-painting-bg.jpg",
+    },
+    {
+      "name":"Happy Feet",
+      "img":"/images/events/happy-feet.jpg",
+      "duration":"1.5 HRS",
+      "time":"22nd - 3PM",
+      "description":"A competion to display dancing skills by presenting a dance performance. The competition will take place in E-Block arena on day 1 3PM onwards. Participants will have to perform for minimum 2 minutes and should not exceed 4 mins",
+      "background":"/images/events/happy-feet-bg.jpg",
+    },
+    {
+      "name":"Lens Have Fun",
+      "img":"/images/events/lens-have-fun.jpg",
+      "duration":"1 Day",
+      "time":"22nd - 2:30PM",
+      "description":"The participant shall be given a theme at the beginning of the event. Participants will get 1 day to click pictures, All entries will be submitted to the event coordinator on 23rd Feb till 12pm. The decision of the judge will be final.",
+      "background":"/images/events/lens-have-fun-bg.jpg",
+    },
+    {
+      "name":"Vlog Making",
+      "img":"/images/events/vlog-making.jpg",
+      "duration":"1 Day",
+      "time":"22nd - 3PM",
+      "description":"The participant has to make a mini vlog.The duration of the vlog should not exceed 2 minutes. Topic of the vlog shall be provided at 3:00pm. All entries shall be submitted on 23rd Feb till 12pm to the coordinator.",
+      "background":"/images/events/vlog-making-bg.png"
+    },
+    {
+      "name":"Web Inception",
+      "img":"/images/events/web-inception.jpg",
+      "duration":"2 Days",
+      "time":"22nd - 3PM",
+      "description":"An event to design a Website. The topic for the website will be given on day 1 of the fest at 3:00pm. Participants will get 2 days to code. At 12pm (24 Feb) the link for the website should be submitted to the student in-charge.",
+      "background":"/images/events/web-inception-bg.jpg"
+    },
+    {
+      "name":"Smash Kart",
+      "img":"/images/events/smash-kart.jpg",
+      "duration":"1 HR",
+      "time":"22nd - 4PM",
+      "description":"The game will be played on https://smashkarts.io/ The last remaining participant shall be declared as the winner.",
+      "background":"/images/events/vlosmash-kart-bg.jpg"
+    },
+    {
+      "name":"Badminton Tournament",
+      "img":"/images/events/badmintion-tournament.jpg",
+      "duration":"2 DAY",
+      "time":"22nd - 1PM",
+      "description":"The first round will be played on 22nd February All those who qualify the first round will play the semi final and final on 23rd February. Only top 16 registrations accepted.",
+      "background":"/images/events/badmintion-tournament-bg.jpg"
+    },
+    {
+      "name":"Spill the Ink",
+      "img":"/images/events/spill-the-ink.jpg",
+      "duration":"2 HRS",
+      "time":"22nd - 1PM",
+      "description":"Participants will be given a topic at the beginning of the competition.A story has to be written based on the given topic. The story should be about 300-500 words. At 12pm, stories have to be submitted",
+      "background":"/images/events/spill-the-ink-bg.jpg"
+    },
+    {
+      "name":"Mandala Art",
+      "img":"/images/events/mandala-art.jpg",
+      "duration":"- HRS",
+      "time":"23nd - 10:30AM",
+      "description":"A competition to display artistic skills by sketching mandala art. The entries will be submitted through google forms. Form will be provided at 10:30 AM on the day of the event.",
+      "background":"/images/events/mandala-art-bg.jpg"
+    },
+    {
+      "name":"Creative Junkies",
+      "img":"/images/events/creative-junkies.jpg",
+      "duration":"- HRS",
+      "time":"23nd - 10:30AM",
+      "description":"An event to display creative skills there will be two rounds and participants have to design a marketing poster for automobile company and design a coffee mug and paste it on a mockup Participants will get two hours for this",
+      "background":"/images/events/creative-junkies-bg.jpg"
+    },
+    
+    {
+      "name":"CodeWars",
+      "img":"/images/events/codewars.jpg",
+      "duration":"- HRS",
+      "time":"23nd - 10:30AM",
+      "description":"This is a coding competition that will take place on hackerearth. The event comprises of 4 coding question: 2 easy, 1 medium and 1 hard. Participant with maximum test cases passed shall be the winner.",
+      "background":"/images/events/codewars-bg.jpg"
+    },
+    {
+      "name":"Token Script",
+      "img":"/images/events/token-script.jpg",
+      "duration":"- HRS",
+      "time":"23nd - 10:30AM",
+      "description":"Participants will be given a word /phrase during the opening ceremony. A poem has to be presented based on what he/she has inferred from the given word/phrase. The poem should not exceed two minutes.",
+      "background":"/images/events/token-script-bg.jpg"
+    },
+    {
+      "name":"Animattic",
+      "img":"/images/events/animattic.jpg",
+      "duration":"- HRS",
+      "time":"23nd - 10:30AM",
+      "description":"This will be a quiz based on anime, music and other ott series. The quiz will take place in E-111. Participants can participate in pairs or solo.Maximum correct answers will be declared the winner(s).",
+      "background":"/images/events/animattic-bg.jpg"
+    },
+    
+  ]
+
+  const [EventIndex, setEventIndex] = useState(0)
+  const [currentEvent, setcurrentEvent] = useState(data[0])
+
+  const UpadateEventIndex = (e) =>{
+    e.preventDefault();
+    setEventIndex(e.target.id);
+  }
+  
+  useEffect(() => {
+    setcurrentEvent(data[EventIndex]);
+    console.log(EventIndex)
+  }, [EventIndex])
+  
+
+  const config = {
+  delta: 10,                            // min distance(px) before a swipe starts. *See Notes*
+  preventDefaultTouchmoveEvent: false,  // call e.preventDefault *See Details*
+  trackTouch: true,                     // track touch input
+  trackMouse: false,                    // track mouse input
+  rotationAngle: 0,                     // set a rotation angle
+} 
+  const handlers = useSwipeable({
+    onSwiped: (eventData) =>{
+      if(eventData.dir === 'Left'){
+        if(EventIndex < data.length - 1){
+          setEventIndex(EventIndex + 1);
+        }
+        else{
+          setEventIndex(0);
+        }
+      }
+      if(eventData.dir === 'Right'){
+        if(EventIndex > 0){
+          setEventIndex(EventIndex - 1);
+        }
+        else{
+          setEventIndex(data.length-1);
+        }
+      }
+    },
+    ...config,
+  });
+
+
+  const Navbar = () =>{
+    if(window.scrollY >= 150){
+      setNav(true);
+    }
+    else{
+      setNav(false);
+    }
+    setScrollPos(window.scrollY);
+    console.log(scrollPos);
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', Navbar);
+  },[])
+
+
   return (
-    <div className={styles.container}>
+    <div >
       <Head>
         <title>Aagaz Website</title>
       </Head>
-      <nav>
+      <nav className={Nav ? 'active' : null}>
         <span>
           <img src="/images/aagaaz-logo.png" alt="logo" />
         </span>
         <ul>
-          <li><Link to="home"  activeClass={styles.active} spy={true} smooth={true} offset={-70} duration={500}>Home</Link></li>
-          <li><Link to="events" activeClass={styles.active} spy={true} smooth={true} offset={-100} duration={500}>Events</Link></li>
-          <li><Link to="register" activeClass={styles.active} spy={true} smooth={true} offset={-120} duration={500}>Register</Link></li>
-          <li><a href="#">Contact Us</a></li>
+          <li><Link to="home"  activeClass={styles.active} spy={true} smooth={true} offset={-70} duration={100}>Home</Link></li>
+          <li><Link to="events" activeClass={styles.active} spy={true} smooth={true} offset={-30} duration={100}>Events</Link></li>
+          <li><Link to="register" activeClass={styles.active} spy={true} smooth={true} offset={550} duration={100}>Register</Link></li>
+          <li><a href="#">Schedule</a></li>
         </ul>          
       </nav>
       <main className={styles.main}>
         <div className={styles.hero} id="home">  
-          <img className={styles.fusion} src="/images/Fusion.png" />
-          <h3>presents</h3>
-          <img className={styles.aagaaz} src="/images/aagaaz-logo.png" alt="logo" />
-          <img className={styles.people} src="/images/people.png" />
+          <img className={styles.fusion} style={{top:scrollPos/5}}  src="/images/Fusion.png" style={{top:scrollPos/5}}  />
+          <h3 style={{top:scrollPos/5}} >presents</h3>
+          <img className={styles.aagaaz} style={{top:scrollPos/5}} src="/images/aagaaz-logo.png" alt="logo" />
+          <h3 style={{top:scrollPos/5}} >A Techno-Cultural Fest</h3>
+          <h3 style={{top:scrollPos/5}} >on 22rd and 23th February</h3>
+          <img className={styles.people} style={{top:-scrollPos/5}} src="/images/people.png" />
         </div>
+
+
 
         <h2 className="heading" id="events">Events</h2>
-        <div className={styles.events}>
-          <div className={styles.event}>
-            <div className={styles.imageContainer}>
-              <img src="http://via.placeholder.com/350" alt="event1" />
-            </div>
-            <div className={styles.ContentContainer}>
-              <h3>Event can be of four </h3>
-              <div className={styles.metadata}>
-              <div className={styles.fee}>
-                <span className={styles.icon}><FaRupeeSign/></span>
-                <span>10Rs</span>
-              </div>
-              <div className={styles.time}>
-                <div className={styles.icon}><FaClock/></div>
-                <span>23rd - 11:00AM</span>
-              </div>
-              </div>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem.</p>
-              <button>More Info</button>
-            </div>
-          </div>
-        </div>
+
         <div className={styles.eventsNames}>
-          <span>Vlog making</span>
-          <span className={styles.active}>Vlog making</span>
-          <span>Vlog making</span>
-          <span>Vlog making</span>
-          <span>Vlog making</span>
-          <span>Vlog making</span>
-          <span>Vlog making</span>
-          <span>Vlog making</span>
-          <span>Vlog making</span>
-          <span>Vlog making</span>
-          <span>Vlog making</span>
-          <span>Vlog making</span>
-          <span>Vlog making</span>
-          <span>Vlog making</span>
-          <span>Vlog making</span>
+         {data.map((item,index) => ( 
+           <>
+            <span id={index} className={ EventIndex == index ? styles.active : null } onClick={(e)=>{UpadateEventIndex(e)}}>{item.name}</span>
+          </>
+         ))}
         </div>
 
-        <h2 className="heading" id="register">Register</h2>
+         <h3 className="subheading no-desktop" id="register">13 Events swipe below to know more</h3>
+         <h3 className="subheading no-mobile" id="register">13 Events select events to know more</h3>
+        <div className={styles.events} {...handlers} >
+          <div className={styles.bg}>
+            <img src={currentEvent.background}/>
+          </div>
 
-        <div className={styles.register}>
+           <div className={styles.event}>
+              <div className={styles.imageContainer}>
+                <img src={currentEvent.img} />
+              </div>
+              <div className={styles.ContentContainer}>
+                <h3>{currentEvent.name}</h3>
+                <div className={styles.metadata}>
+                <div className={styles.fee}>
+                  <span className={styles.icon}><FaClock/></span>
+                  <span>{currentEvent.duration}</span>
+                </div>
+                <div className={styles.time}>
+                  <div className={styles.icon}><FaCalendarAlt/></div>
+                  <span>{currentEvent.time}</span>
+                </div>
+                </div>
+                <p>{currentEvent.description}</p>
+              </div>
+            </div>
+        </div>
+
+        <h2 className="heading" >Register</h2>
+
+        <div className={styles.register} id="register">
         <h3 className="subheading" id="register">Select the Events to register</h3>
-          <div className={styles.form}>
-          
-          <div className={`${styles.checkbox} `}>
-            <input id="1" type="checkbox" />
-            <label className={`${styles.names} ${styles.disableselect}`} htmlFor="1"  onClick={()=>{console.log("clicked")}}>Video Making</label>
-          </div>
+          <div className={styles.checkboxes}>
 
-          <div className={`${styles.checkbox} `}>
-            <input id="2" type="checkbox" />
-            <label className={`${styles.names} ${styles.disableselect}`} htmlFor="2"  onClick={()=>{console.log("clicked")}}>Video Making</label>
-          </div>
-          <div className={`${styles.checkbox} `}>
-            <input id="2" type="checkbox" />
-            <label className={`${styles.names} ${styles.disableselect}`} htmlFor="2"  onClick={()=>{console.log("clicked")}}>Video Making</label>
-          </div>
-          <div className={`${styles.checkbox} `}>
-            <input id="2" type="checkbox" />
-            <label className={`${styles.names} ${styles.disableselect}`} htmlFor="2"  onClick={()=>{console.log("clicked")}}>Video Making</label>
-          </div>
-          <div className={`${styles.checkbox} `}>
-            <input id="2" type="checkbox" />
-            <label className={`${styles.names} ${styles.disableselect}`} htmlFor="2"  onClick={()=>{console.log("clicked")}}>Video Making</label>
-          </div>
-          <div className={`${styles.checkbox} `}>
-            <input id="2" type="checkbox" />
-            <label className={`${styles.names} ${styles.disableselect}`} htmlFor="2"  onClick={()=>{console.log("clicked")}}>Video Making</label>
-          </div>
-          <div className={`${styles.checkbox} `}>
-            <input id="2" type="checkbox" />
-            <label className={`${styles.names} ${styles.disableselect}`} htmlFor="2"  onClick={()=>{console.log("clicked")}}>Video Making</label>
-          </div>
-          <div className={`${styles.checkbox} `}>
-            <input id="2" type="checkbox" />
-            <label className={`${styles.names} ${styles.disableselect}`} htmlFor="2"  onClick={()=>{console.log("clicked")}}>Video Making</label>
-          </div>
-          <div className={`${styles.checkbox} `}>
-            <input id="2" type="checkbox" />
-            <label className={`${styles.names} ${styles.disableselect}`} htmlFor="2"  onClick={()=>{console.log("clicked")}}>Video Making</label>
-          </div>
-          <div className={`${styles.checkbox} `}>
-            <input id="2" type="checkbox" />
-            <label className={`${styles.names} ${styles.disableselect}`} htmlFor="2"  onClick={()=>{console.log("clicked")}}>Video Making</label>
-          </div>
-
-            
+          {data.map((item,index) => ( 
+            <div className={`${styles.checkbox} `} key={index}>
+              <input id={item.name} type="checkbox" />
+              <label className={`${styles.names} ${styles.disableselect}`} htmlFor={item.name}  onClick={()=>{console.log("clicked")}}>{item.name}</label>
+            </div>
+          ))}
 
           </div>
+          <button>Register Now</button>
         </div>
 
       </main>
@@ -128,3 +267,5 @@ export default function Home() {
     </div>
   )
 }
+
+export default Home;
