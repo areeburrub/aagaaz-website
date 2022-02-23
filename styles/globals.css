@@ -5,7 +5,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  margin-bottom: 20vh;
+  margin-bottom: 50vh;
   scroll-behavior: smooth;
 }
 
@@ -14,7 +14,7 @@ body {
   --secondary: #468FAF;
   --text-dark:#012A4A;
   --text-light:#A9D6E5;
-  --hover:#1f5b86;
+  --hover:#3a7097;
   --active:#013A63;
   --button:#2C7DA0;
 }
@@ -39,6 +39,17 @@ main{
   margin: 0 auto;
   letter-spacing: 15px;
   margin-top:10vh;
+  width:fit-content;
+  text-transform: uppercase;
+}
+
+.subheading{
+  font-size: 3ch;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin: 0 auto;
+  letter-spacing: 5px;
+  margin:2vh auto;
   width:fit-content;
   text-transform: uppercase;
 }
