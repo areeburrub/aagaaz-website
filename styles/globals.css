@@ -5,7 +5,19 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  margin-bottom: 20vh;}
+  margin-bottom: 20vh;
+  scroll-behavior: smooth;
+}
+
+:root {
+  --primary: #356385;
+  --secondary: #468FAF;
+  --text-dark:#012A4A;
+  --text-light:#A9D6E5;
+  --hover:#1f5b86;
+  --active:#013A63;
+  --button:#2C7DA0;
+}
 
 a {
   color: inherit;
@@ -20,6 +32,17 @@ main{
   margin-top: 10vh;
 }
 
+.heading{
+  font-size: 5ch;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin: 0 auto;
+  letter-spacing: 15px;
+  margin-top:10vh;
+  width:fit-content;
+  text-transform: uppercase;
+}
+
 nav{
   height: 10vh;
   width: 100%;
@@ -31,6 +54,7 @@ nav{
   display: flex;
   justify-content: space-between;
   z-index: 999;
+  box-shadow: 0px 0px 74px -20px rgba(0, 0, 0, 0.75);
 }
 nav ul{
   display: flex;
@@ -47,6 +71,11 @@ nav ul li{
   font-weight: normal;
   font-size: 3ch;
   margin: 0 10px;
+  color:var(--text-dark);
+}
+
+nav ul li Link.active{
+  color:var(--text-light);
 }
 
 nav span{
