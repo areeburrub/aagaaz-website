@@ -232,7 +232,7 @@ function Home () {
       </nav>
       <main className={styles.main}>
         <div className={styles.hero} id="home">  
-          <img className={styles.fusion} style={{top:scrollPos/5}}  src="/images/Fusion.png" style={{top:scrollPos/5}}  />
+          <img className={styles.fusion} style={{top:scrollPos/5}}  src="/images/Fusion.png" />
           <h3 style={{top:scrollPos/5}} >presents</h3>
           <img className={styles.aagaaz} style={{top:scrollPos/5}} src="/images/aagaaz-logo.png" alt="logo" />
           <h3 style={{top:scrollPos/5}} >A Techno-Cultural Fest</h3>
