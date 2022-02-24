@@ -8,7 +8,6 @@ import { useSwipeable } from 'react-swipeable';
 import { useRouter } from 'next/router'
 import {FaAngleRight,FaAngleLeft} from 'react-icons/fa'
 
-
 function Home () {
   
   
@@ -367,7 +366,13 @@ function Home () {
         </div>
 
       </main>
-
+      <footer>
+        <div className={styles.footer}>
+          <div className={styles.footerContent}>
+            Website Designed by <a href="https://areeb-on.web.app/">Areeb ur Rub</a>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }
