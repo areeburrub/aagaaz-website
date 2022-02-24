@@ -389,18 +389,23 @@
 
 /* Register Button */
 
-.register button{
+.register form{
+  display:flex;
+  flex-direction:column;
+}
+
+.register .submitBtn {
   margin: 10px auto;
   background: var(--primary);
   color: var(--text-light);
-  font-size:2ch;
+  font-size:3ch;
   font-family:ubuntu;
   border:none;
   border-radius:20px;
   padding:10px 20px;
 }
 
-.register button:hover{
+.register .submitBtn:hover {
   background: var(--secondary);
   color: var(--text-dark);
 }
@@ -420,7 +425,13 @@
 
 
 
+.aboutSection .card {
+  display:flex;
+  flex-direction:column;
+  width:90%;
+  max-width:300px;
 
+}
 
 
 .disableselect {

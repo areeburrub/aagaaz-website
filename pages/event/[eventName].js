@@ -1,18 +1,12 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
-import {FaCalendarAlt,FaClock} from 'react-icons/fa'
+import React from 'react'
+import {useRouter} from 'next/router'
+import styles from '../../styles/Event.module.css'
 import { Link, animateScroll as scroll } from "react-scroll";
 import {useState, useEffect} from 'react'
-import { useSwipeable } from 'react-swipeable';
-import { useRouter } from 'next/router'
 
-function Home () {
-  
-  
-  const [Nav, setNav] = useState(false);
-  const [scrollPos, setScrollPos] = useState(0);
-  const router = useRouter();
-  const data = [
+const EventPage = () => {
+
+   const data = [
     {
       "name":"Face Painting",
       "img":"/images/events/face-painting.jpg",
@@ -134,72 +128,24 @@ function Home () {
     
   ]
 
-  const [EventIndex, setEventIndex] = useState(0)
-  const [currentEvent, setcurrentEvent] = useState(data[0])
+
+
+  const router = useRouter();
   
-  const[RegEvents, setRegEvents] = useState(data)
-  
+  const [event, setEvent] = useState(data[0]);
 
-
-  const updateRegEvents = (e) => {
-    let temp = RegEvents;
-    
-    var tData = JSON.parse(e.target.getAttribute('data'));
-
-    if (e.target.checked) {
-
-
-    }
-  else {
-    
-    }
-    setRegEvents(temp);
-
-   }
-
-
-  const UpadateEventIndex = (e) =>{
-    e.preventDefault();
-    setEventIndex(e.target.id);
-  }
-  
   useEffect(() => {
-    setcurrentEvent(data[EventIndex]);
-    console.log(EventIndex)
-  }, [EventIndex])
+    const eventName = router.query.eventName;
+    const event = data.find(event => event.name === eventName);
+    setEvent(event);
+  }, [router.query.eventName]);
   
 
-  const config = {
-  delta: 10,                            // min distance(px) before a swipe starts. *See Notes*
-  preventDefaultTouchmoveEvent: false,  // call e.preventDefault *See Details*
-  trackTouch: true,                     // track touch input
-  trackMouse: false,                    // track mouse input
-  rotationAngle: 0,                     // set a rotation angle
-} 
-  const handlers = useSwipeable({
-    onSwiped: (eventData) =>{
-      if(eventData.dir === 'Left'){
-        if(EventIndex < data.length - 1){
-          setEventIndex(EventIndex + 1);
-        }
-        else{
-          setEventIndex(0);
-        }
-      }
-      if(eventData.dir === 'Right'){
-        if(EventIndex > 0){
-          setEventIndex(EventIndex - 1);
-        }
-        else{
-          setEventIndex(data.length-1);
-        }
-      }
-    },
-    ...config,
-  });
-
-
-  const Navbar = () =>{
+  
+  const [scrollPos, setScrollPos] = useState(0);
+  const [Nav, setNav] = useState(false);
+  
+  const Scroller = () =>{
     if(window.scrollY >= 150){
       setNav(true);
     }
@@ -207,30 +153,23 @@ function Home () {
       setNav(false);
     }
     setScrollPos(window.scrollY);
-    console.log(scrollPos);
   }
 
   useEffect(() => {
-    window.addEventListener('scroll', Navbar);
+    window.addEventListener('scroll', Scroller);
   },[])
 
-
   return (
-    <div >
-      <Head>
-        <title>Aagaz Website</title>
-      </Head>
-      <nav className={Nav ? 'active' : null}>
+    <>
+        <nav className={Nav ? 'active' : null}>
         <span>
           <img src="/images/aagaaz-logo.png" alt="logo" />
         </span>
         <ul>
-          <li><Link to="home"  activeClass={styles.active} spy={true} smooth={true} offset={-70} duration={100}>Home</Link></li>
-          <li><Link to="events" activeClass={styles.active} spy={true} smooth={true} offset={-50} duration={100}>Events</Link></li>
-          <li><Link to="register" activeClass={styles.active} spy={true} smooth={true} offset={550} duration={100}>Register</Link></li>
+          <li><a onClick={()=>{router.push('/')}}>Back to Main Page</a></li>
         </ul>          
       </nav>
-      <main className={styles.main}>
+        <main className={styles.main}>
         <div className={styles.hero} id="home">  
           <img className={styles.fusion} style={{top:scrollPos/5}}  src="/images/Fusion.png" style={{top:scrollPos/5}}  />
           <h3 style={{top:scrollPos/5}} >presents</h3>
@@ -239,83 +178,18 @@ function Home () {
           <h3 style={{top:scrollPos/5}} >on 22rd and 23th February</h3>
           <img className={styles.people} style={{top:-scrollPos/5}} src="/images/people.png" />
         </div>
-
-
-
-        <h2 className="heading" id="events">Events</h2>
-
-        <div className={styles.eventsNames}>
-         {data.map((item,index) => ( 
-           <>
-            <span id={index} className={ EventIndex == index ? styles.active : null } onClick={(e)=>{UpadateEventIndex(e)}}>{item.name}</span>
-          </>
-         ))}
+        <div className={styles.EventContainer}>
+          <h2 className="heading">{event?.name}</h2>
+          <img className={styles.EventImg} src={event?.img}/>
+          <p>{event?.description}</p>
+          <img className={styles.EventBg} src={event?.background}/>
+          <button>Register</button>
         </div>
 
-         <h3 className="subheading no-desktop" id="register">13 Events swipe below to know more</h3>
-         <h3 className="subheading no-mobile" id="register">13 Events select events to know more</h3>
-        <div className={styles.events} {...handlers} >
-          <div className={styles.bg}>
-            <img src={currentEvent.background}/>
-          </div>
-
-           <div className={styles.event}>
-              <div className={styles.imageContainer}>
-                <img src={currentEvent.img} />
-              </div>
-              <div className={styles.ContentContainer}>
-                <h3>{currentEvent.name}</h3>
-                <div className={styles.metadata}>
-                <div className={styles.fee}>
-                  <span className={styles.icon}><FaClock/></span>
-                  <span>{currentEvent.duration}</span>
-                </div>
-                <div className={styles.time}>
-                  <div className={styles.icon}><FaCalendarAlt/></div>
-                  <span>{currentEvent.time}</span>
-                </div>
-                </div>
-                <p>{currentEvent.description}</p>
-                <button name={currentEvent.name} onClick={(e)=>{router.push(`/event/${e.target.name}`)}}>Know More</button>
-              </div> 
-            </div>
-        </div>
-
-        <h2 className="heading" >Register</h2>
-
-        <div className={styles.register} id="register">
-          <h3 className="subheading" id="register">Select the Events to register</h3>
-
-          <form onSubmit={(e)=>{e.preventDefault(); console.log(RegEvents); setRegEvents([]) } }>
-            <div className={styles.checkboxes}>
-
-            {data.map((item,index) => ( 
-              <div className={`${styles.checkbox} `} key={index}>
-                <input id={item.name} data={JSON.stringify(item)} type="checkbox"  onClick={(e)=>{updateRegEvents(e);}}/>
-                <label id={item.name} className={`${styles.names} ${styles.disableselect}`} htmlFor={item.name} >{item.name}</label>
-              </div>
-            ))}
-
-            </div>
-            <button className={styles.submitBtn} type="submit">Register Now</button>
-          </form>
-
-        </div>
-
-        <h2 className="heading" >know more About Aagaaz</h2>
-        <div className={styles.aboutSection}>
-            <div className={styles.card}>
-              <img src="https://via.placeholder.com/250x250" />
-              <span className={styles.title}>Our Team</span>
-
-              <button>Know More</button>
-            </div>
-        </div>
 
       </main>
-
-    </div>
+    </>
   )
 }
 
-export default Home;
+export default EventPage

@@ -1,0 +1,119 @@
+.hero {
+  display: flex;
+  background: linear-gradient(0deg, #fff, #a4d7fbab),
+    url("/images/wave.png") no-repeat center center;
+  background-size: cover;
+  width: 100%;
+  height: fit-content;
+  align-items: center;
+  flex-direction: column;
+  padding: 2vh;
+  padding-top: 5vh;
+}
+
+.hero span img {
+  height: 100px;
+  width: auto;
+}
+
+.hero h3 {
+  position: relative;
+}
+
+.hero .fusion {
+  position: relative;
+  width: 40%;
+}
+
+.hero .aagaaz {
+  position: relative;
+  top: 0;
+  width: 100%;
+}
+
+.hero .people {
+  position: relative;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+.hero img {
+  width: 100%;
+}
+
+@media screen and (min-width: 936px) {
+
+  .hero span img {
+    height: 100px;
+    width: auto;
+  }
+
+  .hero .fusion {
+    width: 12%;
+    z-index: 1;
+  }
+
+  .hero h3 {
+    z-index: 1;
+    font-size: 3ch;
+    font-family: ubuntu;
+  }
+
+  .hero .aagaaz {
+    width: 60%;
+    z-index: 1;
+  }
+
+  .hero .people {
+    width: 50%;
+  }
+
+  .hero img {
+    width: 100%;
+  }
+
+}
+
+.EventContainer{
+  display:flex;
+  width: 100%;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.EventContainer .EventBg{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity:0.1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index:-1;
+}
+.EventContainer p{
+  font-family:ubuntu;
+  font-size: 3ch;
+  width:90%;
+  max-width:500px;
+  text-align: center;
+}
+.EventContainer .EventImg{
+  width:90%;
+  max-width:400px;
+}
+.EventContainer button{
+  background:var(--primary);
+  color:var(--text-light);
+  font-size:4ch;
+  font-family:ubuntu;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+} 
+.EventContainer button:hover{
+  background:var(--hover);
+}
