@@ -200,7 +200,7 @@ const Team = () =>{
               </div>
               <ul className={styles.social}>
                 {each.social.map((social,index) => (
-                  <li><a>{social.icon}</a></li>
+                  <li key={index}><a>{social.icon}</a></li>
                 ))}
               </ul>
           </div>
