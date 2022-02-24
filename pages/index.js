@@ -265,8 +265,7 @@ function Home () {
 
            <div className={styles.event}>
               <div className={styles.imageContainer}>
-                <Image src={currentEvent.img} layout='fill' alt={currentEvent.name}/>
-                {/* <img src={currentEvent.img} /> */}
+                <img src={currentEvent.img} />
               </div>
               <div className={styles.ContentContainer}>
                 <h3>{currentEvent.name}</h3>
