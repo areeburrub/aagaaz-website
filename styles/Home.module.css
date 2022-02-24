@@ -218,7 +218,35 @@
   cursor: pointer;
 }
 
+.events .ArrowLeft,.events .ArrowRight {
+  position: absolute;
+  font-size: 6ch;
+  color: var(--text-light);
+  text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.794);
+}
+
+.events .ArrowLeft{
+ left:0;   
+}
+
+.events .ArrowRight{
+ right:0;   
+}
+
+
 @media screen and (min-width: 936px) {
+  
+  .events .ArrowLeft,.events .ArrowRight {
+    position: absolute;
+    font-size: 6ch;
+    color: var(--text-light);
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.794);
+    height:60%;
+    display:flex;
+    align-items:center;
+  }
+
+
   .events .event{
     flex-direction: row;
     width: fit-content;

@@ -6,6 +6,8 @@ import { Link, animateScroll as scroll } from "react-scroll";
 import {useState, useEffect} from 'react'
 import { useSwipeable } from 'react-swipeable';
 import { useRouter } from 'next/router'
+import {FaAngleRight,FaAngleLeft} from 'react-icons/fa'
+
 
 function Home () {
   
@@ -201,6 +203,24 @@ function Home () {
     ...config,
   });
 
+  const EventSlider = (i) => {
+    if(i === 'Left'){
+        if(EventIndex < data.length - 1){
+          setEventIndex(EventIndex + 1);
+        }
+        else{
+          setEventIndex(0);
+        }
+      }
+      if(i === 'Right'){
+        if(EventIndex > 0){
+          setEventIndex(EventIndex - 1);
+        }
+        else{
+          setEventIndex(data.length-1);
+        }
+      }
+  }
 
   const Navbar = () =>{
     if(window.scrollY >= 150){
@@ -259,11 +279,14 @@ function Home () {
          <h3 className="subheading no-desktop" id="register">13 Events swipe below to know more</h3>
          <h3 className="subheading no-mobile" id="register">13 Events select events to know more</h3>
         <div className={styles.events} {...handlers} >
+          <div className={styles.ArrowLeft} onClick={()=>{EventSlider('Left')}}>
+            <FaAngleLeft/>
+          </div>
           <div className={styles.bg}>
             <img src={currentEvent.background}/>
           </div>
 
-           <div className={styles.event}>
+            <div className={styles.event}>
               <div className={styles.imageContainer}>
                 <img src={currentEvent.img} />
               </div>
@@ -283,6 +306,9 @@ function Home () {
                 <button name={currentEvent.name} onClick={(e)=>{router.push(`/event/${e.target.name}`)}}>Know More</button>
               </div> 
             </div>
+          <div className={styles.ArrowRight}  onClick={()=>{EventSlider('Right')}}>
+            <FaAngleRight/>
+          </div>
         </div>
 
         <h2 className="heading" >Register</h2>
