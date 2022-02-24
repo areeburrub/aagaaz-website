@@ -169,6 +169,14 @@ const EventPage = () => {
           <li><a onClick={()=>{router.push('/')}}>Back to Main Page</a></li>
         </ul>          
       </nav>
+      <div className={styles.hero} id="home">  
+        <img className={styles.fusion} style={{top:scrollPos/5}}  src="/images/Fusion.png" />
+        <h3 style={{top:scrollPos/5}} >presents</h3>
+        <img className={styles.aagaaz} style={{top:scrollPos/5}} src="/images/aagaaz-logo.png" alt="logo" />
+        <h3 style={{top:scrollPos/5}} >A Techno-Cultural Fest</h3>
+        <h3 style={{top:scrollPos/5}} >on 22rd and 23th February</h3>
+        <img className={styles.people} style={{top:-scrollPos/5}} src="/images/people.png" />
+      </div>
         <main className={styles.main}>
         
         <div className={styles.EventContainer}>

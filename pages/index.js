@@ -15,6 +15,15 @@ function Home () {
   const router = useRouter();
   const data = [
     {
+      "name":"Vlog Making",
+      "img":"/images/Events/vlog-making.jpg",
+      "duration":"1 Day",
+      "time":"22nd - 3PM",
+      "description":"The participant has to make a mini vlog.The duration of the vlog should not exceed 2 minutes. Topic of the vlog shall be provided at 3:00pm. All entries shall be submitted on 23rd Feb till 12pm to the coordinator.",
+      "background":"/images/Events/vlog-making-bg.png",
+      "checked":false,
+    },
+    {
       "name":"Face Painting",
       "img":"/images/Events/face-painting.jpg",
       "duration":"1.5 HRS",
@@ -39,15 +48,6 @@ function Home () {
       "time":"22nd - 2:30PM",
       "description":"The participant shall be given a theme at the beginning of the event. Participants will get 1 day to click pictures, All entries will be submitted to the event coordinator on 23rd Feb till 12pm. The decision of the judge will be final.",
       "background":"/images/Events/lens-have-fun-bg.jpg",
-      "checked":false,
-    },
-    {
-      "name":"Vlog Making",
-      "img":"/images/Events/vlog-making.jpg",
-      "duration":"1 Day",
-      "time":"22nd - 3PM",
-      "description":"The participant has to make a mini vlog.The duration of the vlog should not exceed 2 minutes. Topic of the vlog shall be provided at 3:00pm. All entries shall be submitted on 23rd Feb till 12pm to the coordinator.",
-      "background":"/images/Events/vlog-making-bg.png",
       "checked":false,
     },
     {

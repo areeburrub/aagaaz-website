@@ -76,6 +76,7 @@
 }
 
 .GalleryContainer{
+  width: 90%;
   display:flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -94,8 +95,8 @@
 .galleryItem {
   margin: 10px;
   box-shadow: 0.3rem 0.4rem 0.4rem rgba(0, 0, 0, 0.4);
-  height: 500px;
-  width: 500px;
+  height: 440px;
+  width: 440px;
   overflow: hidden;
   
 }
