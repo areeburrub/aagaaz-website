@@ -1,0 +1,205 @@
+.hero {
+  display: flex;
+  background: linear-gradient(0deg, #fff, #a4d7fbab),
+    url("/images/wave.png") no-repeat center center;
+  background-size: cover;
+  width: 100%;
+  height: fit-content;
+  align-items: center;
+  flex-direction: column;
+  padding: 2vh;
+  padding-top: 5vh;
+}
+
+.hero span img {
+  height: 100px;
+  width: auto;
+}
+
+.hero h3 {
+  position: relative;
+}
+
+.hero .fusion {
+  position: relative;
+  width: 40%;
+}
+
+.hero .aagaaz {
+  position: relative;
+  top: 0;
+  width: 100%;
+}
+
+.hero .people {
+  position: relative;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+.hero img {
+  width: 100%;
+}
+
+@media screen and (min-width: 936px) {
+
+  .hero span img {
+    height: 100px;
+    width: auto;
+  }
+
+  .hero .fusion {
+    width: 12%;
+    z-index: 1;
+  }
+
+  .hero h3 {
+    z-index: 1;
+    font-size: 3ch;
+    font-family: ubuntu;
+  }
+
+  .hero .aagaaz {
+    width: 60%;
+    z-index: 1;
+  }
+
+  .hero .people {
+    width: 50%;
+  }
+
+  .hero img {
+    width: 100%;
+  }
+
+}
+
+.TeamContainer{
+  margin-top:5vh;
+  width:100%;
+}
+
+.TeamContainer .TeamRow {
+  display:flex;
+  width: 90%;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin: 0 auto;
+}
+
+.ourTeam {
+  padding: 30px 0 40px;
+  margin: 30px;
+  background-color: var(--secondary);
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  width:300px;
+  box-shadow: 0px 0px 74px -10px rgba(0, 0, 0, 0.75);
+  border-radius:20px;
+}
+
+.ourTeam .picture {
+  display: inline-block;
+  height: 230px;
+  width: 230px;
+  margin-bottom: 10px;
+  z-index: 1;
+  position: relative;
+}
+
+.ourTeam .picture::before {
+  content: "";
+  width: 100%;
+  height: 0;
+  border-radius: 50%;
+  background-color: var(--text-light);
+  position: absolute;
+  bottom: 135%;
+  right: 0;
+  left: 0;
+  opacity: 0.9;
+  transform: scale(3);
+  transition: all 0.3s linear 0s;
+}
+
+.ourTeam:hover .picture::before {
+  height: 100%;
+}
+
+.ourTeam .picture::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: var(--text-light);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.ourTeam .picture img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  transform: scale(1);
+  transition: all 0.9s ease 0s;
+}
+
+.ourTeam:hover .picture img {
+  box-shadow: 0 0 0 14px #f7f5ec;
+  transform: scale(0.7);
+}
+
+.ourTeam .name {
+  display: block;
+  font-size: 4ch;
+  font-family:ubuntu;
+  color: var(--text-light);
+  text-transform: capitalize;
+}
+
+.ourTeam .title {
+  display: block;
+  position:relative;
+  top:-20px;
+  font-size: 2ch;
+  font-family:ubuntu;
+  color: var(--text-dark);
+  text-transform: capitalize;
+}
+
+.ourTeam .social {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: var(--text-light);
+  position: absolute;
+  bottom: -100px;
+  left: 0;
+  transition: all 0.5s ease 0s;
+}
+
+.ourTeam:hover .social {
+  bottom: 0;
+}
+
+.ourTeam .social li {
+  display: inline-block;
+}
+
+.ourTeam .social li a {
+  display: block;
+  padding: 10px;
+  font-size: 3ch;
+  color: var(--text-dark);
+  transition: all 0.3s ease 0s;
+  text-decoration: none;
+}
+
+.ourTeam .social li a:hover {
+  color: var(--text-light);
+  background-color: var(--secondary);
+}

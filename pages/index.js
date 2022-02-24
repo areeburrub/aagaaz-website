@@ -228,15 +228,16 @@ function Home () {
           <li><Link to="home"  activeClass={styles.active} spy={true} smooth={true} offset={-70} duration={100}>Home</Link></li>
           <li><Link to="events" activeClass={styles.active} spy={true} smooth={true} offset={-50} duration={100}>Events</Link></li>
           <li><Link to="register" activeClass={styles.active} spy={true} smooth={true} offset={550} duration={100}>Register</Link></li>
+          <li><Link to="about" activeClass={styles.active} spy={true} smooth={true} offset={550} duration={100}>About</Link></li>
         </ul>          
       </nav>
       <main className={styles.main}>
         <div className={styles.hero} id="home">  
-          <img className={styles.fusion} style={{top:scrollPos/5}}  src="/images/Fusion.png" />
-          <h3 style={{top:scrollPos/5}} >presents</h3>
-          <img className={styles.aagaaz} style={{top:scrollPos/5}} src="/images/aagaaz-logo.png" alt="logo" />
-          <h3 style={{top:scrollPos/5}} >A Techno-Cultural Fest</h3>
-          <h3 style={{top:scrollPos/5}} >on 22rd and 23th February</h3>
+          <img className={styles.fusion} style={{top:scrollPos/3}}  src="/images/Fusion.png" />
+          <h3 style={{top:scrollPos/3}} >presents</h3>
+          <img className={styles.aagaaz} style={{top:scrollPos/3}} src="/images/aagaaz-logo.png" alt="logo" />
+          <h3 style={{top:scrollPos/3}} >A Techno-Cultural Fest</h3>
+          <h3 style={{top:scrollPos/3}} >on 22rd and 23th February</h3>
           <img className={styles.people} style={{top:-scrollPos/5}} src="/images/people.png" />
         </div>
 
@@ -302,14 +303,38 @@ function Home () {
 
         </div>
 
-        <h2 className="heading" >know more About Aagaaz</h2>
+        <h2 className="heading" id="about" >know more About Aagaaz</h2>
         <div className={styles.aboutSection}>
             <div className={styles.card}>
-              <img src="https://via.placeholder.com/250x250" />
-              <span className={styles.title}>Our Team</span>
-
-              <button>Know More</button>
+              <div className={styles.imgContainer}>
+                <img src="/images/team.png" />
+              </div>
+              <div className={styles.content}>
+                <span className={styles.title}>Our Team</span>
+                <button onClick={()=>{router.push('/team')}}>Know More</button>
+              </div>
             </div>
+
+            <div className={styles.card}>
+              <div className={styles.imgContainer}>
+                <img src="/images/gallery.jpg" />
+              </div>
+              <div className={styles.content}>
+                <span className={styles.title}>Gallery</span>
+                <button onClick={()=>{router.push('/gallery')}}>Know More</button>
+              </div>
+            </div>
+            
+            <div className={styles.card}>
+              <div className={styles.imgContainer}>
+                <img src="/images/galgotia.jpg" />
+              </div>
+              <div className={styles.content}>
+                <span className={styles.title}>Our History</span>
+                <button>Know More</button>
+              </div>
+            </div>
+
         </div>
 
       </main>
