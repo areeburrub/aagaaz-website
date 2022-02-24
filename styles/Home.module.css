@@ -140,6 +140,7 @@
   overflow: hidden;
   border-radius: 10px;
   max-height: 400px;
+  position: relative;
 }
 .events .event .imageContainer img{
   width: 100%;

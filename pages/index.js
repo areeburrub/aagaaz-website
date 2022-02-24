@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Image from 'next/image';
 import styles from '../styles/Home.module.css'
 import {FaCalendarAlt,FaClock} from 'react-icons/fa'
 import { Link, animateScroll as scroll } from "react-scroll";
@@ -134,6 +135,8 @@ function Home () {
     
   ]
 
+
+
   const [EventIndex, setEventIndex] = useState(0)
   const [currentEvent, setcurrentEvent] = useState(data[0])
   
@@ -262,7 +265,8 @@ function Home () {
 
            <div className={styles.event}>
               <div className={styles.imageContainer}>
-                <img src={currentEvent.img} />
+                <Image src={currentEvent.img} layout='fill' alt={currentEvent.name}/>
+                {/* <img src={currentEvent.img} /> */}
               </div>
               <div className={styles.ContentContainer}>
                 <h3>{currentEvent.name}</h3>
