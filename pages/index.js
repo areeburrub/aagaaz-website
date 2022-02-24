@@ -65,7 +65,7 @@ function Home () {
       "duration":"1 HR",
       "time":"22nd - 4PM",
       "description":"The game will be played on https://smashkarts.io/ The last remaining participant shall be declared as the winner.",
-      "background":"/images/Events/vlosmash-kart-bg.jpg",
+      "background":"/images/Events/smash-kart-bg.jpg",
       "checked":false,
     },
     {
